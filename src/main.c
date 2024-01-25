@@ -15,7 +15,7 @@ int main(void)
 
     // Init ball
     Ball ball;
-    init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 2.0f, 2.0f, 30, BLACK);
+    init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50, 0.0f, 0.0f, 20, BLACK);
 
     // Game loop
     while (!WindowShouldClose())

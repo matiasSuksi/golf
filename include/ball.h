@@ -9,10 +9,11 @@ typedef struct
 {
     Vector2 position;
     Vector2 velocity;
+    Vector2 draw_start_pos;    // Start position of draw and release
+    float damping_factor;      // Damping factor to gradually reduce speed
     float radius;
     Color color;
-    bool is_drawing;         // Flag for draw and release
-    Vector2 draw_start_pos;  // Start position of draw and release
+    bool is_drawing;           // Flag for draw and release
 } Ball;
 
 void init_ball(Ball *ball, float start_x, float start_y, float start_vel_x, float start_vel_y, float radius, Color color);
@@ -20,4 +21,3 @@ void update_ball(Ball *ball);
 void draw_ball(const Ball *ball);
 
 #endif
-
