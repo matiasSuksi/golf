@@ -13,16 +13,17 @@ void init_ball(Ball *ball, float start_x, float start_y, float start_vel_x, floa
 
 void update_ball(Ball *ball)
 {
-    if(IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
-        if(!ball->is_drawing)
+        if (!ball->is_drawing)
         {
             ball->is_drawing = true;
             ball->draw_start_pos = GetMousePosition();
         }
-    } else
+    }
+    else
     {
-        if(ball->is_drawing)
+        if (ball->is_drawing)
         {
             ball->is_drawing = false;
             // Calculate velocity based on difference between start and end positions of draw
@@ -39,21 +40,23 @@ void update_ball(Ball *ball)
     ball->position.y += ball->velocity.y;
 
     // Check window borders and adjust position and velocity if needed
-    if(ball->position.x - ball->radius < 0)
+    if (ball->position.x - ball->radius < 0)
     {
         ball->position.x = ball->radius;
         ball->velocity.x = -ball->velocity.x * ball->damping_factor;  // Reverse velocity and apply damping
-    } else if(ball->position.x + ball->radius > GetScreenWidth())
+    }
+    else if (ball->position.x + ball->radius > GetScreenWidth())
     {
         ball->position.x = GetScreenWidth() - ball->radius;
         ball->velocity.x = -ball->velocity.x * ball->damping_factor;
     }
 
-    if(ball->position.y - ball->radius < 0)
+    if (ball->position.y - ball->radius < 0)
     {
         ball->position.y = ball->radius;
         ball->velocity.y = -ball->velocity.y * ball->damping_factor;
-    } else if(ball->position.y + ball->radius > GetScreenHeight())
+    }
+    else if (ball->position.y + ball->radius > GetScreenHeight())
     {
         ball->position.y = GetScreenHeight() - ball->radius;
         ball->velocity.y = -ball->velocity.y * ball->damping_factor;
@@ -64,8 +67,8 @@ void draw_ball(const Ball *ball)
 {
     DrawCircleV(ball->position, ball->radius, ball->color);
     // Aiming line for the ball
-    if(ball->is_drawing)
+    if (ball->is_drawing)
     {
-        DrawLineV(ball->draw_start_pos, GetMousePosition(), GRAY);
+        DrawLineEx(ball->draw_start_pos, GetMousePosition(), 3.0f, BLUE);
     }
 }
