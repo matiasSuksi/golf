@@ -66,17 +66,4 @@ void update_ball(Ball *ball)
     }
 }
 
-void draw_ball(const Ball *ball)
-{
-    DrawCircleV(ball->position, ball->radius, ball->color);
-    // Aiming line for the ball
-    if (ball->is_drawing)
-    {
-        DrawLineEx(ball->draw_start_pos, GetMousePosition(), 2.5f, BLUE);
-    }
-}
 
-void draw_swing_count(const Ball *ball)
-{
-    DrawText(TextFormat("Swing Count: %d", ball->swing_count), 10, 10, 20, BLACK);
-}

@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "raylib.h"
 
-#include "ball.h"
-#include "course.h"
+#include "gui.h"
 
 #define SCREEN_WIDTH 600
 #define SCREEN_HEIGHT 800
@@ -16,10 +15,9 @@ int main(void)
     Ball ball;
     init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50, 0.0f, 0.0f, 15, WHITE);
 
+    // Generate golf course
     Hole hole;
     generate_hole(&hole, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-    // Generate golf course
     Obstacle obstacles[MAX_OBSTACLES];
     generate_obstacles(obstacles, &hole, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -29,14 +27,12 @@ int main(void)
         update_ball(&ball);
         reflect_ball_from_obstacle(&ball, obstacles);
 
-        // Graphics drawing section
         BeginDrawing();
         ClearBackground(GREEN);
 
-        draw_obstacles(obstacles);
-        draw_hole(&hole);
-        draw_ball(&ball);
-        draw_swing_count(&ball);
+        // Draw all GUI elements
+        draw_gui_elements(&ball, &hole, obstacles);
+
         EndDrawing();
     }
 

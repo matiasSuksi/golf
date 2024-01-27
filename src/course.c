@@ -1,9 +1,11 @@
 #include "course.h"
 
-// Now randomly generates obstacles for screen
-// TODO: We need distinct golf courses with increased difficulty.
-// 1. Heuristics for course difficulty calculation & generation?
-// 2. Predefined list of predefined obstacle locations?
+/*
+Now randomly generates obstacles for screen
+TODO: We need distinct golf courses with increased difficulty.
+1. Heuristics for course difficulty calculation & generation?
+2. Predefined list of predefined obstacle locations?
+*/
 void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], const Hole *hole, int screen_width, int screen_height)
 {
     for (int i = 0; i < MAX_OBSTACLES; i++)
@@ -20,7 +22,7 @@ void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], const Hole *hole, int
             obstacles[i].rect.y = GetRandomValue(0, screen_height - obstacles[i].rect.height);
         }
 
-        obstacles[i].color = RED; // Obstacle color
+        obstacles[i].color = DARKBROWN; // Obstacle color
     }
 }
 
@@ -30,19 +32,6 @@ void generate_hole(Hole *hole, int screen_width, int screen_height)
     hole->position.y = 25; // Fixed position near the top
     hole->radius = 20.0f; // Adjust the size
     hole->color = BLACK; // Adjust the color
-}
-
-void draw_obstacles(const Obstacle obstacles[MAX_OBSTACLES])
-{
-    for (int i = 0; i < MAX_OBSTACLES; i++)
-    {
-        DrawRectangleRounded(obstacles[i].rect, 0.3, 8, obstacles[i].color);
-    }
-}
-
-void draw_hole(const Hole *hole)
-{
-    DrawCircleV(hole->position, hole->radius, hole->color);
 }
 
 // Check that course obstacles won't spawn on top of each other
