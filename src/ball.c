@@ -69,6 +69,6 @@ void draw_ball(const Ball *ball)
     // Aiming line for the ball
     if (ball->is_drawing)
     {
-        DrawLineEx(ball->draw_start_pos, GetMousePosition(), 3.0f, BLUE);
+        DrawLineEx(ball->draw_start_pos, GetMousePosition(), 2.5f, BLUE);
     }
 }

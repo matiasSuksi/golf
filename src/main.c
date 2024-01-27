@@ -14,11 +14,14 @@ int main(void)
 
     // Init ball
     Ball ball;
-    init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50, 0.0f, 0.0f, 20, BLACK);
+    init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50, 0.0f, 0.0f, 15, WHITE);
+
+    Hole hole;
+    generate_hole(&hole, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     // Generate golf course
     Obstacle obstacles[MAX_OBSTACLES];
-    generate_obstacles(obstacles, SCREEN_WIDTH, SCREEN_HEIGHT);
+    generate_obstacles(obstacles, &hole, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     // Game loop
     while (!WindowShouldClose())
@@ -28,15 +31,18 @@ int main(void)
         // Check for collision with obstacles
         if (check_ball_collision(&ball, obstacles))
         {
-            ball.velocity.x = -ball.velocity.x; // Reverse velocity on collision with obstacles
+            ball.velocity.x = -ball.velocity.x;
             ball.velocity.y = -ball.velocity.y;
         }
 
         // Graphics drawing section
         BeginDrawing();
-        ClearBackground(RAYWHITE);
+        ClearBackground(GREEN);
+
         draw_obstacles(obstacles);
+        draw_hole(&hole);
         draw_ball(&ball);
+
         EndDrawing();
     }
 
