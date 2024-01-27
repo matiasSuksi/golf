@@ -9,6 +9,7 @@ void init_ball(Ball *ball, float start_x, float start_y, float start_vel_x, floa
     ball->is_drawing = false;
     ball->draw_start_pos = (Vector2){0};
     ball->damping_factor = 0.98f;  // This factor reduces speed of ball gradually
+    ball->swing_count = 0;
 }
 
 void update_ball(Ball *ball)
@@ -28,6 +29,8 @@ void update_ball(Ball *ball)
             ball->is_drawing = false;
             // Calculate velocity based on difference between start and end positions of draw
             ball->velocity = Vector2Subtract(GetMousePosition(), ball->draw_start_pos);
+            // Increment swing count
+            ball->swing_count++;
         }
     }
 
@@ -39,11 +42,11 @@ void update_ball(Ball *ball)
     ball->position.x += ball->velocity.x;
     ball->position.y += ball->velocity.y;
 
-    // Check window borders and adjust position and velocity if needed
+    // Check collision with window borders
     if (ball->position.x - ball->radius < 0)
     {
         ball->position.x = ball->radius;
-        ball->velocity.x = -ball->velocity.x * ball->damping_factor;  // Reverse velocity and apply damping
+        ball->velocity.x = -ball->velocity.x * ball->damping_factor;
     }
     else if (ball->position.x + ball->radius > GetScreenWidth())
     {
@@ -71,4 +74,9 @@ void draw_ball(const Ball *ball)
     {
         DrawLineEx(ball->draw_start_pos, GetMousePosition(), 2.5f, BLUE);
     }
+}
+
+void draw_swing_count(const Ball *ball)
+{
+    DrawText(TextFormat("Swing Count: %d", ball->swing_count), 10, 10, 20, BLACK);
 }

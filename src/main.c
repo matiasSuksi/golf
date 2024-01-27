@@ -36,7 +36,7 @@ int main(void)
         draw_obstacles(obstacles);
         draw_hole(&hole);
         draw_ball(&ball);
-
+        draw_swing_count(&ball);
         EndDrawing();
     }
 

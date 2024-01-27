@@ -26,19 +26,17 @@ void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], const Hole *hole, int
 
 void generate_hole(Hole *hole, int screen_width, int screen_height)
 {
-    // Generate hole close to the upper window border and at the center
     hole->position.x = screen_width / 2;
     hole->position.y = 25; // Fixed position near the top
-    hole->radius = 20.0f; // Adjust the size as needed
-    hole->color = BLACK; // Adjust the color as needed
+    hole->radius = 20.0f; // Adjust the size
+    hole->color = BLACK; // Adjust the color
 }
 
 void draw_obstacles(const Obstacle obstacles[MAX_OBSTACLES])
 {
     for (int i = 0; i < MAX_OBSTACLES; i++)
     {
-        DrawRectangleRec(obstacles[i].rect, obstacles[i].color);
-        DrawRectangleLinesEx(obstacles[i].rect, 2, BLACK); // Draw black outline around the obstacles
+        DrawRectangleRounded(obstacles[i].rect, 0.3, 8, obstacles[i].color);
     }
 }
 

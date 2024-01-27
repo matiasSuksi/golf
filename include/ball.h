@@ -14,10 +14,12 @@ typedef struct
     float radius;
     Color color;
     bool is_drawing;           // Flag for draw and release
+    int swing_count;           // How many hits player has used
 } Ball;
 
 void init_ball(Ball *ball, float start_x, float start_y, float start_vel_x, float start_vel_y, float radius, Color color);
 void update_ball(Ball *ball);
 void draw_ball(const Ball *ball);
+void draw_swing_count(const Ball *ball);
 
 #endif
