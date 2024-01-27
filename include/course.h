@@ -20,8 +20,8 @@ typedef struct {
 
 void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], const Hole *hole, int screen_width, int screen_height);
 void draw_obstacles(const Obstacle obstacles[MAX_OBSTACLES]);
-bool check_ball_collision(const Ball *ball, const Obstacle obstacles[MAX_OBSTACLES]);
 bool prevent_overlapping_obstacles(const Obstacle obstacles[MAX_OBSTACLES], int index, const Rectangle rect);
+void reflect_ball_from_obstacle(Ball *ball, const Obstacle obstacles[MAX_OBSTACLES]);
 
 void generate_hole(Hole *hole, int screen_width, int screen_height);
 void draw_hole(const Hole *hole);

@@ -27,13 +27,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         update_ball(&ball);
-
-        // Check for collision with obstacles
-        if (check_ball_collision(&ball, obstacles))
-        {
-            ball.velocity.x = -ball.velocity.x;
-            ball.velocity.y = -ball.velocity.y;
-        }
+        reflect_ball_from_obstacle(&ball, obstacles);
 
         // Graphics drawing section
         BeginDrawing();
