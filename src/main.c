@@ -3,8 +3,8 @@
 #include "gui.h"
 #include "menu.h"
 
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 1000
 
 void run_game(void)
 {
@@ -23,6 +23,13 @@ void run_game(void)
     {
         update_ball(&ball);
         reflect_ball_from_obstacle(&ball, obstacles);
+        // Check if ball is in hole
+        if (is_ball_in_hole(&ball, &hole))
+        {
+            init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50, 0.0f, 0.0f, 15, WHITE); // Reset ball location
+            ball.swing_count = 0; // Reset swing count
+            generate_obstacles(obstacles, &hole, SCREEN_WIDTH, SCREEN_HEIGHT); // Generate new course
+        }
         BeginDrawing();
         ClearBackground(GREEN);
         draw_gui_elements(&ball, &hole, obstacles); //Draw all game GUI elements

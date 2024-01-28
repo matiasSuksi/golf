@@ -70,3 +70,9 @@ void reflect_ball_from_obstacle(Ball *ball, const Obstacle obstacles[MAX_OBSTACL
         }
     }
 }
+
+// Check if distance between ball and hole center is less than the sum of their radius
+bool is_ball_in_hole(const Ball *ball, const Hole *hole)
+{
+    return (Vector2Distance(ball->position, hole->position) < ball->radius + hole->radius);
+}
