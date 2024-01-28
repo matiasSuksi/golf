@@ -1,13 +1,15 @@
 #include "menu.h"
+#include "gui.h"
 
+// Show main menu
 MenuItem main_menu(void)
 {
-    ClearBackground(RAYWHITE);
+    ClearBackground(BLACK);
 
     // Draw menu options
-    DrawText("Main Menu", GetScreenWidth() / 2 - MeasureText("Main Menu", 40) / 2, 80, 40, DARKGRAY);
-    DrawText("1. Start Game", GetScreenWidth() / 2 - MeasureText("1. Start Game", 20) / 2, 220, 20, DARKGRAY);
-    DrawText("2. Exit", GetScreenWidth() / 2 - MeasureText("2. Exit", 20) / 2, 250, 20, DARKGRAY);
+    DrawTextEx(custom_font, "Main Menu", (Vector2){GetScreenWidth() / 2 - MeasureTextEx(custom_font, "Main Menu", 60, 0).x / 2, 80}, 60, 0, GOLD);
+    DrawTextEx(custom_font, "1. Start Game", (Vector2){GetScreenWidth() / 2 - MeasureTextEx(custom_font, "1. Start Game", 40, 0).x / 2, 220}, 40, 0, GOLD);
+    DrawTextEx(custom_font, "2. Exit", (Vector2){GetScreenWidth() / 2 - MeasureTextEx(custom_font, "2. Exit", 40, 0).x / 2, 250}, 40, 0, GOLD);
 
     // Get user input
     if (IsKeyPressed(KEY_ONE))

@@ -35,6 +35,8 @@ int main(void)
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Ascetic GOLF");
     SetTargetFPS(60);
 
+    init_gui_attributes();
+    
     // Game loop
     while (!WindowShouldClose())
     {
