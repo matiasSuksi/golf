@@ -8,7 +8,7 @@ void init_ball(Ball *ball, float start_x, float start_y, float start_vel_x, floa
     ball->color = color;
     ball->is_drawing = false;
     ball->draw_start_pos = (Vector2){0};
-    ball->damping_factor = 0.98f;  // This factor reduces speed of ball gradually
+    ball->damping_factor = 0.85f;  // This factor reduces speed of ball gradually
     ball->swing_count = 0;
 }
 
@@ -27,10 +27,8 @@ void update_ball(Ball *ball)
         if (ball->is_drawing)
         {
             ball->is_drawing = false;
-            // Calculate velocity based on difference between start and end positions of draw
-            ball->velocity = Vector2Subtract(GetMousePosition(), ball->draw_start_pos);
-            // Increment swing count
-            ball->swing_count++;
+            ball->velocity = Vector2Subtract(GetMousePosition(), ball->draw_start_pos); // Calculate velocity based on difference between start and end positions of draw
+            ball->swing_count++; // Increment swing count
         }
     }
 
@@ -65,5 +63,3 @@ void update_ball(Ball *ball)
         ball->velocity.y = -ball->velocity.y * ball->damping_factor;
     }
 }
-
-
