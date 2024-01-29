@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "raylib.h"
 #include "gui.h"
-#include "menu.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 1000
