@@ -71,8 +71,11 @@ void reflect_ball_from_obstacle(Ball *ball, const Obstacle obstacles[MAX_OBSTACL
     }
 }
 
-// Check if distance between ball and hole center is less than the sum of their radius
+// Check if ball goes into hole
 bool is_ball_in_hole(const Ball *ball, const Hole *hole)
 {
-    return (Vector2Distance(ball->position, hole->position) < ball->radius + hole->radius);
+    bool close_enough = Vector2Distance(ball->position, hole->position) < ball->radius + hole->radius;  // Check if distance between ball and hole center is less than sum of their radius
+    bool slow_enough = Vector2Length(ball->velocity) < 5.0f; // Check if speed of ball is slow enough to go in
+
+    return close_enough && slow_enough;
 }
