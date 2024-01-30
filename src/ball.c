@@ -27,7 +27,7 @@ void update_ball(Ball *ball)
         if (ball->is_drawing)
         {
             ball->is_drawing = false;
-            ball->velocity = Vector2Subtract(GetMousePosition(), ball->draw_start_pos); // Calculate velocity based on difference between start and end positions of draw
+            ball->velocity = Vector2Subtract(ball->draw_start_pos, GetMousePosition()); // Calculate velocity based on difference between start and end positions of draw
             ball->swing_count++; // Increment swing count
         }
     }

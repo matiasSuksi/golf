@@ -6,7 +6,7 @@ TODO: We need distinct golf courses with increased difficulty.
 1. Heuristics for course difficulty calculation & generation?
 2. Predefined list of predefined obstacle locations?
 */
-void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], const Hole *hole, int screen_width, int screen_height)
+void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], int screen_width, int screen_height)
 {
     for (int i = 0; i < MAX_OBSTACLES; i++)
     {

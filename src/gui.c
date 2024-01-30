@@ -57,7 +57,7 @@ void draw_swing_count(const Ball *ball, Font custom_font)
 // Show main menu
 MenuItem main_menu(void)
 {
-    ClearBackground(BLACK);
+    ClearBackground(DARKGREEN);
 
     // Draw menu options
     DrawTextEx(custom_font, "Main Menu", (Vector2){GetScreenWidth() / 2 - MeasureTextEx(custom_font, "Main Menu", 60, 0).x / 2, 80}, 60, 0, GOLD);
