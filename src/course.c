@@ -6,14 +6,42 @@ TODO: We need distinct golf courses with increased difficulty.
 1. Heuristics for course difficulty calculation & generation?
 2. Predefined list of predefined obstacle locations?
 */
-void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], int screen_width, int screen_height)
+void generate_obstacles(Obstacle obstacles[MAX_OBSTACLES], const Hole *hole, int screen_width, int screen_height)
 {
     for (int i = 0; i < MAX_OBSTACLES; i++)
-    {
-        obstacles[i].rect.width = GetRandomValue(30, 100);
-        obstacles[i].rect.height = GetRandomValue(30, 100);
-        obstacles[i].rect.x = GetRandomValue(0, screen_width - obstacles[i].rect.width);
-        obstacles[i].rect.y = GetRandomValue(0, screen_height - obstacles[i].rect.height);
+    {   
+        // Randomly choose the type of obstacle
+        int obstacle_type = GetRandomValue(0, 2);
+
+        switch (obstacle_type)
+        {
+            case 0:
+                obstacles[i].rect.width = GetRandomValue(30, 100);
+                obstacles[i].rect.height = GetRandomValue(30, 100);
+                obstacles[i].rect.x = GetRandomValue(0, screen_width - obstacles[i].rect.width);
+                obstacles[i].rect.y = GetRandomValue(0, screen_height - obstacles[i].rect.height);
+                obstacles[i].type = RECTANGLE;
+                break;
+
+            case 1:
+                obstacles[i].rect.width = GetRandomValue(30, 100); // Use width as diameter
+                obstacles[i].rect.height = obstacles[i].rect.width; // Make height equal to width
+                obstacles[i].rect.x = GetRandomValue(0, screen_width - obstacles[i].rect.width);
+                obstacles[i].rect.y = GetRandomValue(0, screen_height - obstacles[i].rect.height);
+                obstacles[i].type = CIRCLE;
+                break;
+
+            case 2:
+                obstacles[i].rect.width = GetRandomValue(30, 100);
+                obstacles[i].rect.height = GetRandomValue(30, 100);
+                obstacles[i].rect.x = GetRandomValue(0, screen_width - obstacles[i].rect.width);
+                obstacles[i].rect.y = GetRandomValue(0, screen_height - obstacles[i].rect.height);
+                obstacles[i].type = TRIANGLE;
+                break;
+
+            default:
+                break;
+        }
 
         // Check overlapping with previously generated obstacles
         while (prevent_overlapping_obstacles(obstacles, i, obstacles[i].rect))

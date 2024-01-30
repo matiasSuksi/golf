@@ -34,7 +34,25 @@ void draw_obstacles(const Obstacle obstacles[MAX_OBSTACLES])
 {
     for (int i = 0; i < MAX_OBSTACLES; i++)
     {
-        DrawRectangleRounded(obstacles[i].rect, 0.3, 8, obstacles[i].color);
+        // Draw obstacle depending on its type
+        switch (obstacles[i].type)
+        {
+            case RECTANGLE:
+                DrawRectangleRounded(obstacles[i].rect, 0.3, 8, obstacles[i].color);
+                break;
+            case CIRCLE:
+                Vector2 center = {obstacles[i].rect.x + obstacles[i].rect.width / 2, obstacles[i].rect.y + obstacles[i].rect.height / 2};
+                DrawCircleV(center, obstacles[i].rect.width / 2, obstacles[i].color);
+                break;
+            case TRIANGLE:
+                Vector2 p1 = {obstacles[i].rect.x + obstacles[i].rect.width / 2, obstacles[i].rect.y};
+                Vector2 p2 = {obstacles[i].rect.x, obstacles[i].rect.y + obstacles[i].rect.height};
+                Vector2 p3 = {obstacles[i].rect.x + obstacles[i].rect.width, obstacles[i].rect.y + obstacles[i].rect.height};
+                DrawTriangle(p1, p2, p3, obstacles[i].color);
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -45,13 +63,12 @@ void draw_hole(const Hole *hole)
 
 void draw_swing_count(const Ball *ball, Font custom_font)
 {
-    // Customize the position, font size, spacing, and tint as needed
     Vector2 position = {10, 10};
-    int fontSize = 30;
+    int font_size = 30;
     float spacing = 0;
     Color tint = BLACK;
 
-    DrawTextEx(custom_font, TextFormat("Swing Count: %d", ball->swing_count), position, fontSize, spacing, tint);
+    DrawTextEx(custom_font, TextFormat("Swing Count: %d", ball->swing_count), position, font_size, spacing, tint);
 }
 
 // Show main menu

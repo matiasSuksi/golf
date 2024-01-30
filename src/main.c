@@ -15,7 +15,7 @@ void run_game(void)
     Hole hole;
     generate_hole(&hole, SCREEN_WIDTH, SCREEN_HEIGHT);
     Obstacle obstacles[MAX_OBSTACLES];
-    generate_obstacles(obstacles, SCREEN_WIDTH, SCREEN_HEIGHT);
+    generate_obstacles(obstacles, &hole, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     // Game loop
     while (!WindowShouldClose())
@@ -27,7 +27,7 @@ void run_game(void)
         {
             init_ball(&ball, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50, 0.0f, 0.0f, 15, WHITE); // Reset ball location
             ball.swing_count = 0; // Reset swing count
-            generate_obstacles(obstacles, SCREEN_WIDTH, SCREEN_HEIGHT); // Generate new course
+            generate_obstacles(obstacles, &hole, SCREEN_WIDTH, SCREEN_HEIGHT); // Generate new course
         }
         BeginDrawing();
         ClearBackground(GREEN);
